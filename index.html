@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" href="weather.ico" type="image/gif" sizes="16x16">
+    <title>Weather App</title>
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-wrap">       
+        <main>
+            <section class="location">
+                <div class="city"><i class="fas fa-map-marked-alt"></i></div>
+                <div class="currentTime"><i class="fas fa-map-marked-alt"></i></div>
+            </section>
+            <div class="current">
+                <div class="temp"><i class="fas fa-temperature-high"></i>   <span> </span></div>
+                <div class="weather">--</div>
+                <div class="hi-low">-- / -- </div>
+                <br>
+                <div class="humidity">--</div>
+            </div>
+           
+        </main>
+        <footer>
+            
+        </footer>
+    </div>
+    <script src="app.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+   <script type="text/javascript">
+    var timenow = new Date();
+    var datefromdata = localStorage.getItem("time");
+    var d = new Date(datefromdata);
+    console.log(d);
+    var diff = timenow-d;
+    console.log(diff);
+    if(parseInt(diff)>300000 || datefromdata == ""){        
+            $.ajax({
+                url: 'http://localhost/weatherapp/index.php',
+                success: function (data) {
+                    console.log("Success");
+                    getResults("Thurrock");
+                }
+            });       
+    }
+    else{
+        displayResults();
+    }
+       
+    </script>
+</body>
+
+</html>
